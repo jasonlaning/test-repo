@@ -1,0 +1,39 @@
+body {
+	padding: 20px 15px;
+	font-family: sans-serif;
+}
+
+main {
+	margin: 0 auto;
+	max-width: 1000px;
+	text-align: center;
+}
+
+.js-search-form {
+	margin-bottom: 25px;
+}
+
+.js-video {
+	display: inline-block;
+	width: 30%;
+	margin-right: 3%;
+	margin-bottom: 15px;
+}
+
+.js-video img {
+	width: 100%;
+}
+
+.js-previous-page, .js-next-page {
+	margin-right: 50px;
+}
+
+.senator {
+	display: inline-block;
+	width: 40%;
+	padding: 0 2.5%;
+}
+
+.senator img {
+	width: 100%
+}
