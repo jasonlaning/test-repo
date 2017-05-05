@@ -103,6 +103,11 @@ function getSenatorHTML(bios, votes) {
     	if ((bio.member_id === 'S001202') && !phoneNum) {
     		phoneNum = '202-224-4124';
     	}
+    	var bioUrl = bio.url;
+    	if ((bio.member_id === 'S001202') && !bioUrl) {
+    		bioUrl = 'https://strange.senate.gov';
+    	}
+    	
 
 		state.senatorHTML += ('<div class="senator">' +
 							'<img src="' + imgUrl + '">' +
@@ -111,7 +116,7 @@ function getSenatorHTML(bios, votes) {
 							'<p>' +
 							'<span class = "lighter italic">' + state.stateSelected + ', ' + bio.roles[0].title + '</span><br />' +
 							'Phone: <a href="tel:' + phoneNum + '">' + phoneNum + '</a></br>' +
-							'Website: <a href="' + bio.url + '">' + bio.url + '</a>' +
+							'Website: <a href="' + bioUrl + '">' + bioUrl + '</a>' +
 							'</p>' +				
 							'<section class = "votes-data">' +
 							'<h2>Recent Votes</h2>' +
