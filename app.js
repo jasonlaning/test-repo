@@ -1,74 +1,126 @@
+var apiKey = 'f3eJCOiKbJ2ZMrlU898kj7q8g11J4hEW5IbJY9Zl';
+
 var state = {
 	queryTerm: '',
-	senatorHTML: []
+	senatorBios: [],
+	senatorVotes: [],
+	senatorHTML: [],
+	statePicked: ''
 }
 
 function getMembers() {
+
+	state.senatorBios = [];
+	state.senatorVotes = [];
 	state.senatorHTML = [];
 
 	var settings = {
-		"async": true,
-		"crossDomain": true,
-		"url": "https://api.propublica.org/congress/v1/members/senate/" + state.queryTerm + "/current.json",
-		"method": "GET",
-		"headers": {
-			"x-api-key": "f3eJCOiKbJ2ZMrlU898kj7q8g11J4hEW5IbJY9Zl",
+		'async': true,
+		'crossDomain': true,
+		'url': 'https://api.propublica.org/congress/v1/members/senate/' + state.queryTerm + '/current.json',
+		'method': 'GET',
+		'headers': {
+			'x-api-key': apiKey,
   		}
-}
+	}
 
 	$.ajax(settings).done(function (response) {
 		if (response.results.length > 0) {
-			console.log(response.results);
 			getMemberData(response.results, settings);
 		}
 		else {
-			$('.js-search-results').html('<p>No Results</p>');
+			displaySenatorHTML(response);
 		}
 	});
 }
 
 function getMemberData(members, settings) {
-	var response = {};
-	console.log('member:' + members[0].id);
-		
+	
+	var settings1 = {
+		url: '',
+		headers: {
+			'x-api-key': apiKey,
+  		}
+	};
+
+	var settings2 = {
+		url: '',
+		headers: {
+			'x-api-key': apiKey,
+  		}
+	};
+	
 	for (var i = 0; i < members.length; i++) {
-		settings.url = "https://api.propublica.org/congress/v1/members/" + members[i].id + '.json';
-		$.ajax(settings).done(function (response) {
-			console.log('second response');
-			console.log(response.results);
-			getSenatorHTML(response.results);
-			console.log(state.senatorHTML.length);
-			console.log(members.length);
-			if (state.senatorHTML.length === members.length) {
-			displaySenatorHTML(state.senatorHTML);
-		}
+		settings1.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '.json';
+		settings2.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '/votes.json';
+		console.log(settings1);
+		console.log(settings2);
+
+		$.when($.ajax(settings1), $.ajax(settings2)).done(function (response1, response2) {
+				state.senatorBios.push (response1[0].results);
+				state.senatorVotes.push (response2[0].results);
+			
+				if (state.senatorBios.length === members.length) {
+					getSenatorHTML(state.senatorBios, state.senatorVotes)
+					displaySenatorHTML(state.senatorHTML);	
+				}
 		});
 	}
 }
 
-function preLoadImg(url) {
-	var img = new Image(); 
-    img.src = url;
+function getVotesHTML(votes) {
+	voteHTML = '';
+
+	console.log(votes);
+
+	for (var i = 0; i < 5; i++) {
+		vote = votes[i];
+		voteHTML += '<p>Voted: <strong>' + vote.position + '</strong> <span class="lighter">(' + vote.date + ')</span>';
+		if (vote.bill.title) {
+			var billNum = vote.bill.number.split('.').join("");
+			voteHTML += '<p><a href="https://projects.propublica.org/represent/bills/' + 
+			vote.congress + '/' + billNum + '">' + 
+			vote.bill.number + '</a>: ' + vote.bill.title + '&#8212;' + vote.bill.latest_action + '</p><br />';
+		}
+		else {			
+		voteHTML += '<p>' + vote.description + '</p><br />';
+		}
+	}
+
+	return voteHTML;
 }
 
-function getSenatorHTML(data) {
-	console.log('data for get html:');
-	console.log(data);
-	data = data[0];    
-    var imgUrl = 'https://theunitedstates.io/images/congress/450x550/' + data.member_id + '.jpg';
-    preLoadImg(imgUrl);
-    var phoneNum = data.roles[0].phone;
-    if ((data.member_id === 'S001202') && !phoneNum) {
-    	phoneNum = '202-224-4124';
-    }
-    
-	state.senatorHTML.push('<div class="senator">' +
-							'<h2>' + data.first_name + ' ' + data.last_name + '</h2>' +
-							'<h2>' + phoneNum + '</h2>' +
-							'<p><img src="' + imgUrl + '"></p>' +
-							'<p><a href="https://twitter.com/' + data.twitter_account + '" target="_blank">Twitter Account</a></p>' + 
+function getSenatorHTML(bios, votes) {
+
+	for (var i = 0; i < 2; i++) {
+		console.log('bios', bios);
+		console.log('bios[' + i + ']', bios[i]);
+		var bio = bios[i][0];
+		var vote = votes[i][0];     
+    	var imgUrl = 'https://theunitedstates.io/images/congress/450x550/' + bio.member_id + '.jpg'; // 225x275 or 450x550
+    	var phoneNum = bio.roles[0].phone;
+    	var votesHTML = getVotesHTML(vote.votes);
+    	if ((bio.member_id === 'S001202') && !phoneNum) {
+    		phoneNum = '202-224-4124';
+    	}
+
+		state.senatorHTML += ('<div class="senator">' +
+							'<img src="' + imgUrl + '">' +
+							'<div class="senator-text">' +
+							'<h1>' + bio.first_name + ' ' + bio.last_name + ' (' + bio.roles[0].party + ')</h1>' + 							
+							'<p>' +
+							'<span class = "lighter italic">' + state.stateSelected + ', ' + bio.roles[0].title + '</span><br />' +
+							'Phone: <a href="tel:' + phoneNum + '">' + phoneNum + '</a></br>' +
+							'Website: <a href="' + bio.url + '">' + bio.url + '</a>' +
+							'</p>' +				
+							'<section class = "votes-data">' +
+							'<h2>Recent Votes</h2>' +
+							votesHTML +						 
+							'</section>' +
+							'</div>' +
 							'</div>');
-							console.log(state.senatorHTML);
+							//console.log(state.senatorHTML);
+	}
 }
 
 function displaySenatorHTML(senatorHTML) {
@@ -76,23 +128,26 @@ function displaySenatorHTML(senatorHTML) {
 	console.log('displaying already');
 
 	if (senatorHTML) {
-		for (var i = 0; i < senatorHTML.length; i++) {
-		resultElement += senatorHTML[i];
-		}
+		resultElement = '<div class="to-fade">' + senatorHTML + '</div>';
 	}
 	else {
-		resultElement += '<p>No results</p>';
+		resultElement = '<p class="center">Residents of Washington DC have no representation ' +
+						'in the United States Senate.</p>';
 	}
 
-	$('.js-search-results').html(resultElement);
+	$('.js-searching-alert').toggleClass('no-display');
+	$('#js-search-results').html(resultElement);
+	$('html, body').animate({scrollTop:$('#js-search-results').position().top}, 'slow');
+	$('.to-fade').addClass('fade-in');
 }
 
 function watchSubmit() {
-	$('.js-search-form').submit(function(event) {
+	$('.js-selector-form').submit(function(event) {
 		event.preventDefault();
 		event.stopPropagation();
+		$('.js-searching-alert').toggleClass('no-display');
 		state.queryTerm = $(this).find('option:selected').val();
-		
+		state.stateSelected = $('option:selected').html();		
 		getMembers();
 	});
 }

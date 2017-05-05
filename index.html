@@ -2,14 +2,17 @@
 <html>
 <head>
 	<title>Call My Senators</title>
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,900" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 <body>
 
-	<main>
-		<h1>Call My Senators</h1>
-			<form action="#" class="js-search-form">
+	<main>		
+		<div class="form-wrapper">
+			<form action="#" class="js-selector-form">
+			<h1 class="site-title">Call my senators</h1>
   				<select>
+  					<option value="" disabled selected>Select Your State</option>
 					<option value="AL">Alabama</option>
 					<option value="AK">Alaska</option>
 					<option value="AZ">Arizona</option>
@@ -62,12 +65,15 @@
 					<option value="WI">Wisconsin</option>
 					<option value="WY">Wyoming</option>
 				</select>	
-  				<br><br>
-  				<input type="submit" class="js-query">
+				<label for="js-state-selector" class="no-display">Pick Your State</label>
+				<input type="submit" name="js-state-selector" id="js-state-selector" value="GO">
+				<div class="searching-container">
+					<img src="images/Loading_icon.gif" class="js-searching-alert loading no-display">
+				</div>
 			</form>
+		</div>
+			<div id="js-search-results">
 
-
-			<div class="js-search-results">
 			</div>
 
 	</main>
