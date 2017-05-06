@@ -74,9 +74,9 @@ main {
 	display: table;
 }
 
-.senator img {
+.senator-pic {
 	width: 40%;
-	display: inline-block;
+	float: left;
 	vertical-align: top;
 	padding: 0 35px 35px 0;
 }
@@ -86,19 +86,45 @@ main {
 }
 
 .senator-text {
-	display: inline-block;
-	width: 60%;
+	display: inline;
 }
 
 .senator h1 {
 	margin: 0;
 }
 
+.phone-pic {
+    height: 80px;
+    padding: 5px 25px 5px 5px;
+    margin: 0 5px;
+    float: left;
+    vertical-align: middle;
+}
+
+a.phone-button {
+    appearance: button;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    margin: 10px 0;
+    width: 350px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 35px;
+    color: #777;
+    font-weight: bold;
+    border: 1px solid darkgray;
+}
+
+a.phone-button:hover {
+	border-color: forestgreen;
+	background-color: lightgray;
+}
+
 .votes-data h2, .votes-data p {
 	margin: 0;
 }
 
-.lighter {
+.lighten {
 	color: gray;
 }
 

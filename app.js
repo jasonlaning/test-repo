@@ -90,6 +90,29 @@ function getVotesHTML(votes) {
 	return voteHTML;
 }
 
+function getCommittees(bio) {
+	var committees = '';
+	var committeeList = bio.roles[0].committees;
+	console.log('committees', committeeList);
+
+	if ((bio.member_id === 'S001202') && committeeList.length == 0) {
+		committees = 'Budget Committee, Armed Services Committee, Energy and ' +
+					'Natural Resources Committee, and Agriculture, Nutrition and Forestry Committee.';
+	}
+	else {
+		for (var i = 0; i < committeeList.length; i++) {
+			if (i < committeeList.length - 1) {
+				committees += committeeList[i].name + ', ';
+			}
+			else {
+				committees += 'and ' + committeeList[i].name + '.';
+			}
+		}
+	}
+
+	return committees;
+}
+
 function getSenatorHTML(bios, votes) {
 
 	for (var i = 0; i < 2; i++) {
@@ -106,18 +129,21 @@ function getSenatorHTML(bios, votes) {
     	var bioUrl = bio.url;
     	if ((bio.member_id === 'S001202') && !bioUrl) {
     		bioUrl = 'https://strange.senate.gov';
-    	}
-    	
+    	}    	
+    	var committees = getCommittees(bio);
 
 		state.senatorHTML += ('<div class="senator">' +
-							'<img src="' + imgUrl + '">' +
+							'<img src="' + imgUrl + '" class="senator-pic">' +
 							'<div class="senator-text">' +
 							'<h1>' + bio.first_name + ' ' + bio.last_name + ' (' + bio.roles[0].party + ')</h1>' + 							
 							'<p>' +
-							'<span class = "lighter italic">' + state.stateSelected + ', ' + bio.roles[0].title + '</span><br />' +
-							'Phone: <a href="tel:' + phoneNum + '">' + phoneNum + '</a></br>' +
+							'<span class = "lighten italic">' + state.stateSelected + ', ' + bio.roles[0].title + '</span><br />' +
+							'<a class = "phone-button">' +
+							'<img src="images/green-phone.png" class="phone-pic">' + phoneNum + 
+							'</a><br />' +
 							'Website: <a href="' + bioUrl + '">' + bioUrl + '</a>' +
-							'</p>' +				
+							'</p>' +
+							'<p><span class="lighten italic">Committee membership:</span> ' + committees + '<p>' +				
 							'<section class = "votes-data">' +
 							'<h2>Recent Votes</h2>' +
 							votesHTML +						 
@@ -142,7 +168,7 @@ function displaySenatorHTML(senatorHTML) {
 
 	$('.js-searching-alert').toggleClass('no-display');
 	$('#js-search-results').html(resultElement);
-	$('html, body').animate({scrollTop:$('#js-search-results').position().top}, 'slow');
+	$('html, body').animate({scrollTop:$('#js-search-results').position().top});
 	$('.to-fade').addClass('fade-in');
 }
 
