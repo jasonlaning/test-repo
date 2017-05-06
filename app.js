@@ -138,7 +138,7 @@ function getSenatorHTML(bios, votes) {
 							'<h1>' + bio.first_name + ' ' + bio.last_name + ' (' + bio.roles[0].party + ')</h1>' + 							
 							'<p>' +
 							'<span class = "lighten italic">' + state.stateSelected + ', ' + bio.roles[0].title + '</span><br />' +
-							'<a class = "phone-button">' +
+							'<a href="tel:' + phoneNum + '" class = "phone-button">' +
 							'<img src="images/green-phone.png" class="phone-pic">' + phoneNum + 
 							'</a><br />' +
 							'Website: <a href="' + bioUrl + '">' + bioUrl + '</a>' +
