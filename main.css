@@ -113,6 +113,7 @@ a.phone-button {
     color: #777;
     font-weight: bold;
     border: 1px solid darkgray;
+    text-decoration: none;
 }
 
 a.phone-button:hover {
