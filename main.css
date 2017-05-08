@@ -69,7 +69,7 @@ h1.site-title {
 	margin: 0 auto;
 	padding-top: 35px;
 	width: 450px;
-	padding-bottom: 15px;
+	padding-bottom: 20px;
 }
 
 .title-box, .logo-box {
@@ -102,12 +102,21 @@ h1.site-title {
 
 .js-selector-form select {
 	font-size: 18px;
-    height: 35px;
     padding-left: 5px;
-    margin-top: 10px;
+    margin-top: 15px;
     text-transform: uppercase;
     font-weight: 700;
     color: #666;
+}
+
+#js-state-selector {
+	font-size: 18px;
+    background-color: #961d1d;
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-transform: uppercase;
+    margin-left: 5px;
 }
 
 .searching-container {
@@ -133,17 +142,6 @@ h1.site-title {
 	margin: 0 auto;
 	text-align: left;
 	padding: 0 10px;
-}
-
-#js-state-selector {
-	font-size: 18px;
-    height: 35px;
-    background-color: #961d1d;
-    border-radius: 25px;
-    padding-left: 10px;
-    padding-right: 10px;
-    text-transform: uppercase;
-    margin-left: 5px;
 }
 
 .senator {
@@ -251,10 +249,6 @@ a.phone-button:hover {
 	width: 65px;
 	}
 
-	.js-selector-form select {
-	font-size: 14px;
-	}
-
 	.form-view header {
 	width: 300px;
 	}
@@ -266,6 +260,10 @@ a.phone-button:hover {
 
 	.logo-box {
 		width: 70px;
+	}
+
+	.js-selector-form select {
+		font-size: 14px;
 	}
 
 	.js-selector-form {
