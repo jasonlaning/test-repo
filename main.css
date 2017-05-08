@@ -4,14 +4,16 @@
 
 body {
 	padding: 0;
-	font-family: 'Fira Sans Condensed', sans-serif;
-	font-size: 1.2em;
+	margin: 0;
+	font-size: 20px;
+}
+
+body * {
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 main {
 	margin: 0 auto;
-	max-width: 1000px;
-	text-align: center;
 }
 
 .no-display {
@@ -22,32 +24,96 @@ main {
 	text-align: center;
 }
 
-.site-title {
-	margin: 0 0 10px 0;
+h1, h2, h3, h4 {
+	font-weight: 700;
+	text-transform: uppercase;
 }
 
-.form-wrapper {
-	/*position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-top: -150px;
-	margin-left: -250px;*/
-	margin: 100px auto;
-	width: 500px;
-	height: 250px;
-	border: 1px gray solid;
-	border-radius: 15px;
+h1 {
+	font-size: 225%;
+}
+
+h2 {
+	font-size: 140%;
+}
+
+h1.site-title {
+	margin: 0 0 10px 0;
+	letter-spacing: 3px;
+	text-align: right;
+	line-height: 110%;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.white {
+	color: white;
+}
+
+.form-view {
+	margin: 0 auto;
+	height: 100vh;
+	background-color: #253044;
+	background-image: url("images/background.jpg");
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+.form-view header {
+	margin: 0 auto;
+	padding-top: 35px;
+	width: 450px;
+	padding-bottom: 15px;
+}
+
+.title-box, .logo-box {
+	display: inline-block;
+}
+
+.title-box {
+	width: 300px;
+	padding-right: 5px;
+}
+
+.logo-box {
+	width: 145px;
+}
+
+.logo {
+	width: 110px;
+}
+
+.select-label {
+	opacity: .6;
 }
 
 .js-selector-form {
-	box-sizing: content-box;
-	display: inline-block;
-	padding: 75px 0;
+	margin: 0 auto;
 	height: 100px;
-	text-align: right;	
+	width: 350px;
+	text-align: center;	
+}
+
+.js-selector-form select {
+	font-size: 18px;
+    height: 35px;
+    padding-left: 5px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #666;
 }
 
 .searching-container {
+	opacity: .5;
+}
+.searching-container img{
 	position: relative;
 	height: 80px;
 	text-align: center;
@@ -58,10 +124,26 @@ main {
 	height: 80px;
 }
 
+.results-wrap {
+	background-color: #f0f0f0;
+}
+
 #js-search-results {
-	margin-left: 25px;
-	margin-right: 25px;
+	max-width: 1000px;
+	margin: 0 auto;
 	text-align: left;
+	padding: 0 10px;
+}
+
+#js-state-selector {
+	font-size: 18px;
+    height: 35px;
+    background-color: #961d1d;
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-transform: uppercase;
+    margin-left: 5px;
 }
 
 .senator {
@@ -72,6 +154,11 @@ main {
 	clear: both;
 	content: "";
 	display: table;
+}
+
+.senator a {
+	text-decoration: none;
+	color: MidnightBlue;
 }
 
 .senator-pic {

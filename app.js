@@ -29,7 +29,7 @@ function getMembers() {
 			getMemberData(response.results, settings);
 		}
 		else {
-			displaySenatorHTML(response);
+			displaySenatorHTML('');
 		}
 	});
 }
@@ -141,9 +141,9 @@ function getSenatorHTML(bios, votes) {
 							'<a href="tel:' + phoneNum + '" class = "phone-button">' +
 							'<img src="images/green-phone.png" class="phone-pic">' + phoneNum + 
 							'</a><br />' +
-							'Website: <a href="' + bioUrl + '">' + bioUrl + '</a>' +
+							'<a href="' + bioUrl + '">Official Website</a>' +
 							'</p>' +
-							'<p><span class="lighten italic">Committee membership:</span> ' + committees + '<p>' +				
+							'<p><span class="lighten italic">Committee memberships:</span> ' + committees + '<p>' +				
 							'<section class = "votes-data">' +
 							'<h2>Recent Votes</h2>' +
 							votesHTML +						 
@@ -162,14 +162,15 @@ function displaySenatorHTML(senatorHTML) {
 		resultElement = '<div class="to-fade">' + senatorHTML + '</div>';
 	}
 	else {
-		resultElement = '<p class="center">Residents of Washington DC have no representation ' +
+		resultElement = '<p class="center">Sorry, but residents of Washington DC have no representation ' +
 						'in the United States Senate.</p>';
 	}
 
 	$('.js-searching-alert').toggleClass('no-display');
-	$('#js-search-results').html(resultElement);
-	$('html, body').animate({scrollTop:$('#js-search-results').position().top});
+	$('#js-search-results').html(resultElement);	
 	$('.to-fade').addClass('fade-in');
+	$('.form-view').css('height', '375px');
+	$('html, body').animate({scrollTop:$('#js-search-results').position().top});
 }
 
 function watchSubmit() {
