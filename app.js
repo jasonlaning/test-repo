@@ -79,7 +79,7 @@ function getVotesHTML(votes) {
 		if (vote.bill.title) {
 			var billNum = vote.bill.number.split('.').join("");
 			voteHTML += '<p><a href="https://projects.propublica.org/represent/bills/' + 
-			vote.congress + '/' + billNum + '">' + 
+			vote.congress + '/' + billNum + '" target="_blank" >' + 
 			vote.bill.number + '</a>: ' + vote.bill.title + '&#8212;' + vote.bill.latest_action + '</p><br />';
 		}
 		else {			
@@ -141,7 +141,7 @@ function getSenatorHTML(bios, votes) {
 							'<a href="tel:' + phoneNum + '" class = "phone-button">' +
 							'<img src="images/green-phone.png" class="phone-pic">' + phoneNum + 
 							'</a><br />' +
-							'<a href="' + bioUrl + '">Official Website</a>' +
+							'<a href="' + bioUrl + '" target="_blank" >Official Website</a>' +
 							'</p>' +
 							'<p><span class="lighten italic">Committee memberships:</span> ' + committees + '<p>' +				
 							'<section class = "votes-data">' +
