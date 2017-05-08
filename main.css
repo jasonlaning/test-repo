@@ -107,6 +107,7 @@ h1.site-title {
     text-transform: uppercase;
     font-weight: 700;
     color: #666;
+    height: 30px;
 }
 
 #js-state-selector {
@@ -117,6 +118,7 @@ h1.site-title {
     padding-right: 10px;
     text-transform: uppercase;
     margin-left: 5px;
+    height: 30px;
 }
 
 .searching-container {
@@ -192,13 +194,11 @@ a.phone-button {
     -moz-appearance: button;
     margin: 10px 0;
     width: 350px;
-    height: 80px;
     line-height: 80px;
     font-size: 35px;
-    color: #777;
     font-weight: bold;
-    border: 1px solid darkgray;
     text-decoration: none;
+    display: inline-block;
 }
 
 a.phone-button:hover {
@@ -274,7 +274,7 @@ a.phone-button:hover {
 	}
 
 	a.phone-button {
-    width: 300px;
+    width: 100%;
     font-size: 140%;
 	}
 
