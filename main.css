@@ -30,11 +30,11 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-	font-size: 225%;
+	font-size: 45px;
 }
 
 h2 {
-	font-size: 140%;
+	font-size: 28px;
 }
 
 h1.site-title {
@@ -54,6 +54,10 @@ h1.site-title {
 
 .white {
 	color: white;
+}
+
+.underline {
+	border-bottom: 1px solid #ddd;
 }
 
 .form-view {
@@ -108,16 +112,15 @@ h1.site-title {
     font-weight: 700;
     color: #666;
     height: 30px;
+    border-color: white;
 }
 
 #js-state-selector {
 	font-size: 18px;
     background-color: #961d1d;
-    border-radius: 25px;
     padding-left: 10px;
     padding-right: 10px;
     text-transform: uppercase;
-    margin-left: 5px;
     height: 30px;
 }
 
@@ -161,9 +164,14 @@ h1.site-title {
 	color: MidnightBlue;
 }
 
+.senator a:hover {
+	text-decoration: underline;
+}
+
 .senator-pic {
-	width: 40%;
-	float: left;
+	width: 35%;
+	/*float: left;*/
+	display: inline-block;
 	vertical-align: top;
 	padding: 0 35px 35px 0;
 }
@@ -173,12 +181,24 @@ h1.site-title {
 }
 
 .senator-text {
-	display: inline;
+	display: inline-block;
+	width: 65%;
 }
 
 .senator h1 {
 	margin: 0;
 }
+
+.senator p {
+	line-height: 1.5;
+}
+
+.social-link {
+	display: inline-block;
+	margin-right: 30px;
+}
+
+
 
 .phone-pic {
     height: 80px;
@@ -206,7 +226,7 @@ a.phone-button:hover {
 	background-color: lightgray;
 }
 
-.votes-data h2, .votes-data p {
+.votes-data p {
 	margin: 0;
 }
 
@@ -235,14 +255,22 @@ a.phone-button:hover {
 	animation-fill-mode: forwards;
 }
 
-@media all and (max-device-width: 450px) {
+@media all and (max-device-width: 550px) {
+
+	body {
+		font-size: 16px;
+	}
 
 	h1 {
-		font-size: 180%;
+		font-size: 36px;
+	}
+
+	.senator h1 {
+		font-size: 24px;
 	}
 
 	h2 {
-		font-size: 120%;
+		font-size: 20px;
 	}
 
 	.logo {
@@ -275,7 +303,7 @@ a.phone-button:hover {
 
 	a.phone-button {
     width: 100%;
-    font-size: 140%;
+    font-size: 28px;
 	}
 
 	.senator-pic {
@@ -283,5 +311,11 @@ a.phone-button:hover {
 	float: left;
 	vertical-align: top;
 	padding: 0 15px 15px 0;
-}
+	}
+
+	.senator-text {
+	display: inline;
+	width: 100%;
+	}
+
 }

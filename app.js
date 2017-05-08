@@ -75,11 +75,11 @@ function getVotesHTML(votes) {
 
 	for (var i = 0; i < 5; i++) {
 		vote = votes[i];
-		voteHTML += '<p>Voted: <strong>' + vote.position + '</strong> <span class="lighter">(' + vote.date + ')</span>';
+		voteHTML += '<p class="underline">Voted: <strong>' + vote.position + '</strong> <span class="lighten">(' + vote.date + ')</span>';
 		if (vote.bill.title) {
 			var billNum = vote.bill.number.split('.').join("");
 			voteHTML += '<p><a href="https://projects.propublica.org/represent/bills/' + 
-			vote.congress + '/' + billNum + '" target="_blank" >' + 
+			vote.congress + '/' + billNum + '" target="_blank">' + 
 			vote.bill.number + '</a>: ' + vote.bill.title + '&#8212;' + vote.bill.latest_action + '</p><br />';
 		}
 		else {			
@@ -113,6 +113,30 @@ function getCommittees(bio) {
 	return committees;
 }
 
+function getSocialLinks(bio) {
+	var socialLinks = '';
+
+	if ((bio.member_id === 'S001202') && !bio.url) {
+    	socialLinks += '<a href="https://strange.senate.gov" class="social-link" target="_blank">Official Website</a>';
+    } 
+    if ((bio.member_id === 'S001202') && !bio.facebook_account) {
+    	socialLinks += '<a href="https://www.facebook.com/SenatorLutherStrange" class="social-link" target="_blank">Facebook</a>';
+    }
+    if ((bio.member_id === 'S001202') && !bio.twitter_account) {
+    	socialLinks += '<a href="https://twitter.com/SenatorStrange" class="social-link" target="_blank">Twitter</a>';
+    }
+    if (bio.url) {
+    	socialLinks += '<a href="' + bio.url + '" class="social-link" target="_blank">Official Website</a>';
+    }
+    if (bio.facebook_account) {
+    	socialLinks += '<a href="https://www.facebook.com/' + bio.facebook_account + '" class="social-link" target="_blank">Facebook</a>';
+    }
+    if (bio.twitter_account) {
+    	socialLinks += '<a href="https://twitter.com/' + bio.twitter_account + '" class="social-link" target="_blank">Twitter</a>';
+    }
+	return socialLinks;   
+}
+
 function getSenatorHTML(bios, votes) {
 
 	for (var i = 0; i < 2; i++) {
@@ -126,10 +150,11 @@ function getSenatorHTML(bios, votes) {
     	if ((bio.member_id === 'S001202') && !phoneNum) {
     		phoneNum = '202-224-4124';
     	}
-    	var bioUrl = bio.url;
+    	var socialLinks = getSocialLinks(bio);
+    	/*var bioUrl = bio.url;
     	if ((bio.member_id === 'S001202') && !bioUrl) {
     		bioUrl = 'https://strange.senate.gov';
-    	}    	
+    	}    */	
     	var committees = getCommittees(bio);
 
 		state.senatorHTML += ('<div class="senator">' +
@@ -137,13 +162,18 @@ function getSenatorHTML(bios, votes) {
 							'<div class="senator-text">' +
 							'<h1>' + bio.first_name + ' ' + bio.last_name + ' (' + bio.roles[0].party + ')</h1>' + 							
 							'<p>' +
-							'<span class = "lighten italic">' + state.stateSelected + ', ' + bio.roles[0].title + '</span><br />' +
+							'<span class = "lighten italic">U.S. Senator, representing the State of ' + state.stateSelected + '</span><br />' +
+							'</p>' +
+							'<p>' +
 							'<a href="tel:' + phoneNum + '" class = "phone-button">' +
 							'<img src="images/green-phone.png" class="phone-pic">' + phoneNum + 
 							'</a><br />' +
-							'<a href="' + bioUrl + '" target="_blank" >Official Website</a>' +
 							'</p>' +
-							'<p><span class="lighten italic">Committee memberships:</span> ' + committees + '<p>' +				
+							'<p>' + socialLinks + '</p>' +
+							'<p><span class="lighten italic">Office address:</span><br />' +
+							bio.roles[0].office +
+							'</p>' +
+							'<p><span class="lighten italic">Committee memberships:</span><br />' + committees + '<p>' +				
 							'<section class = "votes-data">' +
 							'<h2>Recent Votes</h2>' +
 							votesHTML +						 
@@ -171,10 +201,11 @@ function displaySenatorHTML(senatorHTML) {
 	$('.to-fade').addClass('fade-in');
 	$('.form-view').css('height', '375px');
 	$('html, body').animate({scrollTop:$('#js-search-results').position().top});
+	$('#state-select').prop('selectedIndex',0);
 }
 
 function watchSubmit() {
-	$('.js-selector-form').submit(function(event) {
+	$('.js-selector-form').change(function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		$('.js-searching-alert').toggleClass('no-display');
