@@ -237,4 +237,53 @@ a.phone-button:hover {
 	animation-fill-mode: forwards;
 }
 
+@media all and (max-device-width: 450px) {
 
+	h1 {
+		font-size: 180%;
+	}
+
+	h2 {
+		font-size: 120%;
+	}
+
+	.logo {
+	width: 65px;
+	}
+
+	.js-selector-form select {
+	font-size: 14px;
+	}
+
+	.form-view header {
+	width: 300px;
+	}
+
+	.title-box {
+		width: 225px;
+		padding-right: 5px;
+	}
+
+	.logo-box {
+		width: 70px;
+	}
+
+	.js-selector-form {
+		margin: 0 auto;
+		height: 100px;
+		width: 300px;
+		text-align: center;	
+	}
+
+	a.phone-button {
+    width: 300px;
+    font-size: 140%;
+	}
+
+	.senator-pic {
+	width: 40%;
+	float: left;
+	vertical-align: top;
+	padding: 0 15px 15px 0;
+}
+}
