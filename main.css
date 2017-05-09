@@ -379,7 +379,7 @@ a.phone-button:hover {
 		display: block;
 		margin: 0 auto;
 		width: 70%;
-		padding: 0;
+		padding: 0 0 15px 0;
 	}
 
 	.senator-state {
