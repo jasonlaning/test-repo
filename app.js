@@ -160,11 +160,9 @@ function getSenatorHTML(bios, votes) {
 							'<p class="senator-state">' +
 							'<span class="lighten italic">U.S. Senator, ' + state.stateSelected + '</span><br />' +
 							'</p>' +
-							'<p>' +
 							'<a href="tel:' + phoneNum + '" class = "phone-button">' +
-							'<img src="images/green-phone.png" class="phone-pic">' + phoneNum + 
-							'</a>' +
-							'</p>' +
+							'<img src="images/green-phone.png"><p>' + phoneNum + 
+							'</p></a>' +
 							'<p class="social-links">' + socialLinks + '</p>' +
 							'<p><span class="lighten italic">Office address:</span><br />' +
 							bio.roles[0].office +
