@@ -203,7 +203,7 @@ function displaySenatorHTML(senatorHTML) {
 		resultElement = '<div class="to-fade">' + senatorHTML + '</div>';
 	}
 	else {
-		resultElement = '<p class="center">Sorry, but residents of Washington DC have no representation ' +
+		resultElement = '<p class="DC-message">Sorry, but residents of Washington DC have no representation ' +
 						'in the United States Senate.</p>';
 	}
 

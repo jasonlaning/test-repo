@@ -192,6 +192,13 @@ a .ham-on, a .ham-off {
 	background-color: #f0f0f0;
 }
 
+.DC-message {
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 800px;
+	margin: 0;
+}
+
 #js-search-results {
 	max-width: 1000px;
 	margin: 0 auto;
