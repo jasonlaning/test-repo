@@ -207,7 +207,9 @@ function displaySenatorHTML(senatorHTML) {
 						'in the United States Senate.</p>';
 	}
 
-	$('.js-searching-alert').toggleClass('no-display');
+	if (!$('.js-searching-alert').hasClass('no-display')) {
+		$('.js-searching-alert').toggleClass('no-display');
+	};
 	$('#js-search-results').html(resultElement);	
 	$('.to-fade').addClass('fade-in');	
 	if (!$('.form-view').hasClass('form-fixed')) {
@@ -236,7 +238,9 @@ function watchSubmit() {
 	$('.js-selector-form').change(function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		$('.js-searching-alert').toggleClass('no-display');
+		if (!$('.form-view').hasClass('nav-bar')) {
+		$('.js-searching-alert').toggleClass('no-display')
+		};
 		state.queryTerm = $(this).find('option:selected').val();
 		state.stateSelected = $('option:selected').html();		
 		getMembers();
