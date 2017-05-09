@@ -77,8 +77,11 @@ h1.site-title {
 	padding-bottom: 20px;
 }
 
-.form-height {
-	height: 350px;
+.form-fixed {
+	height: auto;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
 }
 
 .title-box, .logo-box {
@@ -104,7 +107,7 @@ h1.site-title {
 
 .js-selector-form {
 	margin: 0 auto;
-	/*height: 100px;*/
+	height: 115px;
 	width: 350px;
 	text-align: center;	
 }
@@ -129,19 +132,61 @@ h1.site-title {
     height: 30px;
 }
 
-.searching-container {
-	opacity: .5;
-}
-.searching-container img{
-	position: relative;
-	height: 80px;
-	text-align: center;
+option.option-default {
+	color: black;
 }
 
-.js-searching-alert {
-	text-align: center;
-	height: 80px;
+div.glass-icon {
+    display: inline-block;
+    background-color: #961d1d;
+    height: 30px;
+    width: 30px;
+    margin-top: 15px;
+    padding: 3px 3px 5px 5px;
+    border: 1px solid white;
+    vertical-align: bottom;
 }
+
+.glass-icon img {
+    width: 20px;
+}
+
+.js-searching-alert p {
+	text-align: center;
+	opacity: .5;
+	margin: 10px 0;
+}
+
+.nav-bar {
+	height: 50px;
+}
+
+a .ham-on, a .ham-off {
+	cursor: pointer;
+}
+
+.nav-bar .js-selector-form {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	margin-left: -175px;
+}
+
+.nav-bar select, .nav-bar .glass-icon {
+	margin-top: 10px
+}
+
+.nav-bar-toggle img {
+	height: 40px;
+	position: fixed;
+	top: 5px;
+	right: 15px;
+}
+
+.nav-bar-padding {
+	padding-top: 50px;
+}
+
 
 .results-wrap {
 	background-color: #f0f0f0;
@@ -203,8 +248,6 @@ h1.site-title {
 	margin: 0 15px;
 	text-align: center;
 }
-
-
 
 .phone-pic {
     height: 80px;
@@ -271,6 +314,11 @@ a.phone-button:hover {
 		font-size: 36px;
 	}
 
+	.senator {
+ 	   padding-top: 25px;
+ 	   padding-bottom: 25px;
+	}
+
 	.senator h1 {
 		font-size: 28px;
 		text-align: center;
@@ -297,10 +345,10 @@ a.phone-button:hover {
 		width: 70px;
 	}
 
-	.form-height {
+	/*.form-height {
 		height: 260px;
 	}
-
+*/
 	.js-selector-form select {
 		font-size: 14px;
 	}
@@ -310,6 +358,10 @@ a.phone-button:hover {
 		height: 100px;
 		width: 300px;
 		text-align: center;	
+	}
+
+	.nav-bar .js-selector-form {
+	margin-left: -150px;
 	}
 
 	a.phone-button {
@@ -341,3 +393,29 @@ a.phone-button:hover {
 	}
 
 }
+
+/* for tiny phones */
+@media all and (max-device-width: 325px) {
+	.select-label {
+    	font-size: 14px;
+	}
+
+	.js-selector-form select{
+		font-size: 12px;
+	}
+
+	.js-selector-form {
+		width: 200px;
+	}
+
+	.nav-bar .js-selector-form {
+		margin-left: -100px;
+	}
+
+	p.social-links {
+		font-size: 16px;
+	}
+
+}
+
+

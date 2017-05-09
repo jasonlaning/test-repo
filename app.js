@@ -180,6 +180,20 @@ function getSenatorHTML(bios, votes) {
 	}
 }
 
+function toggleNavBar() {
+	$('.form-view').toggleClass('nav-bar');
+	if (!$('.results-wrap').hasClass('nav-bar-padding')) {
+		$('.results-wrap').addClass('nav-bar-padding');
+	}
+	$('.form-view header').toggleClass('no-display');
+	$('.select-label').toggleClass('no-display');
+	if ($('.nav-bar-toggle').hasClass('no-display')) {
+		$('.nav-bar-toggle').toggleClass('no-display');
+	};
+	$('.nav-bar-toggle img').toggleClass('no-display');
+	//$('.nav-bar-toggle .ham-off').toggleClass('no-display');
+}
+
 
 function displaySenatorHTML(senatorHTML) {
 	var resultElement = '';
@@ -195,10 +209,27 @@ function displaySenatorHTML(senatorHTML) {
 
 	$('.js-searching-alert').toggleClass('no-display');
 	$('#js-search-results').html(resultElement);	
-	$('.to-fade').addClass('fade-in');
-	$('.form-view').addClass('form-height');
-	$('html, body').animate({scrollTop:$('#js-search-results').position().top});
-	$('#state-select').prop('selectedIndex',0);
+	$('.to-fade').addClass('fade-in');	
+	if (!$('.form-view').hasClass('form-fixed')) {
+		$('.form-view').addClass('form-fixed');
+		console.log('form fixed');
+	};
+	//$('html, body').animate({scrollTop:$('#js-search-results').position().top});
+	if (!$('.form-view').hasClass('nav-bar')) {
+		toggleNavBar();
+	};
+
+	$('html, body').animate({scrollTop:$('.results-wrap').position().top});
+	//$('#state-select').prop('selectedIndex',0); //resets select box to default
+}
+
+// event handlers
+
+function watchNavBar() {
+	$('.nav-bar-toggle').click(function() {
+		console.log('NAV BAR FIRED');
+		toggleNavBar();	
+	});
 }
 
 function watchSubmit() {
@@ -213,3 +244,4 @@ function watchSubmit() {
 }
 
 watchSubmit();
+watchNavBar();
