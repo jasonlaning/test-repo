@@ -75,7 +75,7 @@ function getVotesHTML(votes) {
 
 	for (var i = 0; i < 5; i++) {
 		vote = votes[i];
-		voteHTML += '<p class="underline">Voted: <strong>' + vote.position + '</strong> <span class="lighten">(' + vote.date + ')</span>';
+		voteHTML += '<p>Voted: <strong>' + vote.position + '</strong> <span class="lighten">(' + vote.date + ')</span>';
 		if (vote.bill.title) {
 			var billNum = vote.bill.number.split('.').join("");
 			voteHTML += '<p><a href="https://projects.propublica.org/represent/bills/' + 
@@ -151,25 +151,21 @@ function getSenatorHTML(bios, votes) {
     		phoneNum = '202-224-4124';
     	}
     	var socialLinks = getSocialLinks(bio);
-    	/*var bioUrl = bio.url;
-    	if ((bio.member_id === 'S001202') && !bioUrl) {
-    		bioUrl = 'https://strange.senate.gov';
-    	}    */	
     	var committees = getCommittees(bio);
 
 		state.senatorHTML += ('<div class="senator">' +
 							'<img src="' + imgUrl + '" class="senator-pic">' +
 							'<div class="senator-text">' +
 							'<h1>' + bio.first_name + ' ' + bio.last_name + ' (' + bio.roles[0].party + ')</h1>' + 							
-							'<p>' +
-							'<span class = "lighten italic">U.S. Senator, representing the State of ' + state.stateSelected + '</span><br />' +
+							'<p class="senator-state">' +
+							'<span class="lighten italic">U.S. Senator, ' + state.stateSelected + '</span><br />' +
 							'</p>' +
 							'<p>' +
 							'<a href="tel:' + phoneNum + '" class = "phone-button">' +
 							'<img src="images/green-phone.png" class="phone-pic">' + phoneNum + 
-							'</a><br />' +
+							'</a>' +
 							'</p>' +
-							'<p>' + socialLinks + '</p>' +
+							'<p class="social-links">' + socialLinks + '</p>' +
 							'<p><span class="lighten italic">Office address:</span><br />' +
 							bio.roles[0].office +
 							'</p>' +
@@ -183,6 +179,7 @@ function getSenatorHTML(bios, votes) {
 							//console.log(state.senatorHTML);
 	}
 }
+
 
 function displaySenatorHTML(senatorHTML) {
 	var resultElement = '';
@@ -199,7 +196,7 @@ function displaySenatorHTML(senatorHTML) {
 	$('.js-searching-alert').toggleClass('no-display');
 	$('#js-search-results').html(resultElement);	
 	$('.to-fade').addClass('fade-in');
-	$('.form-view').css('height', '375px');
+	$('.form-view').addClass('form-height');
 	$('html, body').animate({scrollTop:$('#js-search-results').position().top});
 	$('#state-select').prop('selectedIndex',0);
 }

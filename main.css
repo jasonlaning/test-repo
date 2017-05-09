@@ -27,6 +27,7 @@ main {
 h1, h2, h3, h4 {
 	font-weight: 700;
 	text-transform: uppercase;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 h1 {
@@ -76,6 +77,10 @@ h1.site-title {
 	padding-bottom: 20px;
 }
 
+.form-height {
+	height: 350px;
+}
+
 .title-box, .logo-box {
 	display: inline-block;
 }
@@ -99,7 +104,7 @@ h1.site-title {
 
 .js-selector-form {
 	margin: 0 auto;
-	height: 100px;
+	/*height: 100px;*/
 	width: 350px;
 	text-align: center;	
 }
@@ -190,12 +195,13 @@ h1.site-title {
 }
 
 .senator p {
-	line-height: 1.5;
+	line-height: 1.25;
 }
 
 .social-link {
 	display: inline-block;
-	margin-right: 30px;
+	margin: 0 15px;
+	text-align: center;
 }
 
 
@@ -266,7 +272,8 @@ a.phone-button:hover {
 	}
 
 	.senator h1 {
-		font-size: 24px;
+		font-size: 28px;
+		text-align: center;
 	}
 
 	h2 {
@@ -290,6 +297,10 @@ a.phone-button:hover {
 		width: 70px;
 	}
 
+	.form-height {
+		height: 260px;
+	}
+
 	.js-selector-form select {
 		font-size: 14px;
 	}
@@ -302,20 +313,31 @@ a.phone-button:hover {
 	}
 
 	a.phone-button {
-    width: 100%;
-    font-size: 28px;
+    	width: 300px;
+    	font-size: 28px;
+    	margin: 0 auto;
+    	display: block;
+	}
+
+	p.social-links {
+		text-align: center;
 	}
 
 	.senator-pic {
-	width: 40%;
-	float: left;
-	vertical-align: top;
-	padding: 0 15px 15px 0;
+		display: block;
+		margin: 0 auto;
+		width: 70%;
+		padding: 0 15px 15px 0;
+	}
+
+	.senator-state {
+		text-align: center;
+		margin-top: 0;
 	}
 
 	.senator-text {
-	display: inline;
-	width: 100%;
+		display: inline;
+		width: 100%;
 	}
 
 }
