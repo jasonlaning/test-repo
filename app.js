@@ -75,15 +75,15 @@ function getVotesHTML(votes) {
 
 	for (var i = 0; i < 5; i++) {
 		vote = votes[i];
-		voteHTML += '<p>Voted: <strong>' + vote.position + '</strong> <span class="lighten">(' + vote.date + ')</span>';
+		voteHTML += '<p>Voted: <strong>' + vote.position + '</strong> <span class="lighten">(' + vote.date + ')</span><br />';
 		if (vote.bill.title) {
 			var billNum = vote.bill.number.split('.').join("");
-			voteHTML += '<p><a href="https://projects.propublica.org/represent/bills/' + 
+			voteHTML += '<a href="https://projects.propublica.org/represent/bills/' + 
 			vote.congress + '/' + billNum + '" target="_blank">' + 
-			vote.bill.number + '</a>: ' + vote.bill.title + '&#8212;' + vote.bill.latest_action + '</p><br />';
+			vote.bill.number + '</a>: ' + vote.bill.title + '&#8212;' + vote.bill.latest_action + '</p>';
 		}
 		else {			
-		voteHTML += '<p>' + vote.description + '</p><br />';
+		voteHTML += vote.description + '</p>';
 		}
 	}
 
@@ -178,21 +178,6 @@ function getSenatorHTML(bios, votes) {
 	}
 }
 
-function toggleNavBar() {
-	$('.form-view').toggleClass('nav-bar');
-	if (!$('.results-wrap').hasClass('nav-bar-padding')) {
-		$('.results-wrap').addClass('nav-bar-padding');
-	}
-	$('.form-view header').toggleClass('no-display');
-	$('.select-label').toggleClass('no-display');
-	if ($('.nav-bar-toggle').hasClass('no-display')) {
-		$('.nav-bar-toggle').toggleClass('no-display');
-	};
-	$('.nav-bar-toggle img').toggleClass('no-display');
-	//$('.nav-bar-toggle .ham-off').toggleClass('no-display');
-}
-
-
 function displaySenatorHTML(senatorHTML) {
 	var resultElement = '';
 	console.log('displaying already');
@@ -210,34 +195,21 @@ function displaySenatorHTML(senatorHTML) {
 	};
 	$('#js-search-results').html(resultElement);	
 	$('.to-fade').addClass('fade-in');	
-	if (!$('.form-view').hasClass('form-fixed')) {
-		$('.form-view').addClass('form-fixed');
-		console.log('form fixed');
+	if (!$('.form-box').hasClass('js-nav-bar')) {
+		$('.form-box').addClass('js-nav-bar');
+		$('.results-wrap').addClass('js-nav-bar-padding');
+		console.log('nav bar');
 	};
-	//$('html, body').animate({scrollTop:$('#js-search-results').position().top});
-	if (!$('.form-view').hasClass('nav-bar')) {
-		toggleNavBar();
-	};
-
 	$('html, body').animate({scrollTop:$('.results-wrap').position().top});
-	//$('#state-select').prop('selectedIndex',0); //resets select box to default
-}
 
-// event handlers
-
-function watchNavBar() {
-	$('.nav-bar-toggle').click(function() {
-		console.log('NAV BAR FIRED');
-		toggleNavBar();	
-	});
 }
 
 function watchSubmit() {
 	$('.js-selector-form').change(function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		if (!$('.form-view').hasClass('nav-bar')) {
-		$('.js-searching-alert').toggleClass('no-display')
+		if (!$('.form-box').hasClass('js-nav-bar')) {
+		$('.js-searching-alert').toggleClass('no-display');
 		};
 		state.queryTerm = $(this).find('option:selected').val();
 		state.stateSelected = $('option:selected').html();		
@@ -246,4 +218,3 @@ function watchSubmit() {
 }
 
 watchSubmit();
-watchNavBar();

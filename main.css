@@ -16,14 +16,6 @@ main {
 	margin: 0 auto;
 }
 
-.no-display {
-	display: none;
-}
-
-.center {
-	text-align: center;
-}
-
 h1, h2, h3, h4 {
 	font-weight: 700;
 	text-transform: uppercase;
@@ -38,30 +30,27 @@ h2 {
 	font-size: 28px;
 }
 
-h1.site-title {
-	margin: 0 0 10px 0;
-	letter-spacing: 3px;
-	text-align: right;
-	line-height: 110%;
+.no-display {
+	display: none;
 }
 
-.left {
-	float: left;
-}
-
-.right {
-	float: right;
+.center {
+	text-align: center;
 }
 
 .white {
 	color: white;
 }
 
-.underline {
-	border-bottom: 1px solid #ddd;
+.lighten {
+	color: gray;
 }
 
-.form-view {
+.italic {
+	font-style: italic;
+}
+
+.form-box {
 	margin: 0 auto;
 	height: 100vh;
 	background-color: #253044;
@@ -70,35 +59,33 @@ h1.site-title {
 	background-repeat: no-repeat;
 }
 
-.form-view header {
+.form-box header {
 	margin: 0 auto;
 	padding-top: 35px;
 	width: 450px;
 	padding-bottom: 20px;
 }
 
-.form-fixed {
-	height: auto;
+h1.site-title {
+	margin: 0 0 10px 0;
+	padding-right: 5px;
+	letter-spacing: 3px;
+	text-align: right;
+	line-height: 110%;
+	display: inline-block;
+	width: 300px;
+}
+
+.form-box.js-nav-bar {
+	height: 60px;
 	position: fixed;
 	width: 100%;
 	z-index: 1;
 }
 
-.title-box, .logo-box {
-	display: inline-block;
-}
-
-.title-box {
-	width: 300px;
-	padding-right: 5px;
-}
-
-.logo-box {
-	width: 145px;
-}
-
-.logo {
+header img {
 	width: 110px;
+	display: inline-block;
 }
 
 .select-label {
@@ -132,61 +119,63 @@ h1.site-title {
     height: 30px;
 }
 
-option.option-default {
-	color: black;
-}
-
-div.glass-icon {
-    display: inline-block;
-    background-color: #961d1d;
-    height: 30px;
-    width: 30px;
-    margin-top: 15px;
-    padding: 3px 3px 5px 5px;
-    border: 1px solid white;
-    vertical-align: bottom;
-}
-
-.glass-icon img {
-    width: 20px;
-}
-
 .js-searching-alert p {
 	text-align: center;
 	opacity: .5;
 	margin: 10px 0;
 }
 
-.nav-bar {
-	height: 50px;
+.js-nav-bar h1.site-title {
+	line-height: 100%;
+	margin: 0 0 0 25px;
+	padding: 0;
+	font-size: 21px;
+	width: 135px;
+	display: inline-block;
 }
 
-a .ham-on, a .ham-off {
-	cursor: pointer;
+.js-nav-bar header img {
+ 	height: 40px;
+ 	width: auto;
+ 	padding-left: 5px;
+ 	padding-right: 5px;
 }
 
-.nav-bar .js-selector-form {
-	position: fixed;
-	top: 0;
-	left: 50%;
-	margin-left: -175px;
-}
-
-.nav-bar select, .nav-bar .glass-icon {
-	margin-top: 10px
-}
-
-.nav-bar-toggle img {
+.js-nav-bar header {
+ 	width: auto;
+ 	display: inline-block;
 	height: 40px;
-	position: fixed;
-	top: 5px;
-	right: 15px;
+ 	margin: 0;
+ 	padding: 0;
+ 	vertical-align: middle;
 }
 
-.nav-bar-padding {
-	padding-top: 50px;
+.js-nav-bar {
+	padding: 10px;
 }
 
+.js-nav-bar .js-selector-form {
+	float: right;
+	display: inline-block;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: auto;
+}
+
+.js-nav-bar select {
+	height: 30px;
+	margin: 5px 25px 5px 25px;
+}
+
+.js-nav-bar label {
+	font-size: 16px;
+}
+
+.js-nav-bar-padding {
+	padding-top: 60px;
+}
 
 .results-wrap {
 	background-color: #f0f0f0;
@@ -227,7 +216,6 @@ a .ham-on, a .ham-off {
 
 .senator-pic {
 	width: 35%;
-	/*float: left;*/
 	display: inline-block;
 	vertical-align: top;
 	padding: 0 35px 35px 0;
@@ -260,7 +248,7 @@ a.phone-button {
 	display: inline-block;
     margin: 10px 0;
     width: 350px;
-    height: 80px;
+    height: 82px;
     font-size: 35px;
     font-weight: bold;
     padding: 10px;
@@ -277,7 +265,6 @@ a.phone-button {
 
 a.phone-button:hover {
 	border-color: forestgreen;
-	background-color: lightgray;
 }
 
 .phone-button img {
@@ -290,18 +277,8 @@ a.phone-button:hover {
 	margin: 0;
 	line-height: 60px;
 	text-align: center;
-}
-
-.votes-data p {
-	margin: 0;
-}
-
-.lighten {
-	color: gray;
-}
-
-.italic {
-	font-style: italic;
+	display: inline-block;
+	width: 268px;
 }
 
 .to-fade {
@@ -321,11 +298,33 @@ a.phone-button:hover {
 	animation-fill-mode: forwards;
 }
 
+@media all and (max-width: 1000px) {
+	.js-nav-bar select {
+		margin-left: 10px;
+	}
+}
+
+@media all and (max-width: 850px) {
+	.js-nav-bar select {
+		margin-right: 10px;
+	}
+
+	.js-nav-bar h1.site-title {
+		margin-left: 10px;
+	}
+}
+
+@media all and (max-width: 800px) {
+	.js-nav-bar label {
+		display: none;
+	}
+}
+
 @media all and (max-device-width: 550px) {
 
 	select:focus, textarea:focus, input:focus {
     font-size: 16px;
-    background: #eee;
+    background: white;
   	}
 
   	select, textarea, input {
@@ -338,6 +337,47 @@ a.phone-button:hover {
 
 	h1 {
 		font-size: 36px;
+	}
+
+	h1.site-title {
+    	width: 224px
+	}
+
+	.form-box header {
+		width: 300px;
+	}
+
+	.form-box.js-nav-bar {
+    	height: 50px;
+	}
+
+	.js-nav-bar-padding {
+		padding-top: 50px;
+	}
+
+	.js-nav-bar {
+ 	    padding: 10px 5px;
+ 	}
+
+	.js-nav-bar header {
+		width: 140px;
+	}
+
+	.js-nav-bar header img {
+		height: 30px;
+		padding-left: 3px;
+		padding-right: 0;
+	}
+
+	.js-nav-bar h1.site-title {
+		margin-left: 0;
+		font-size: 16px;
+		width: 110px;
+	}
+
+	.js-nav-bar select {
+		margin: 0;
+		padding: 0;
 	}
 
 	.senator {
@@ -354,29 +394,12 @@ a.phone-button:hover {
 		font-size: 20px;
 	}
 
-	.logo {
-	width: 65px;
+	header img {
+		width: 65px;
 	}
 
-	.form-view header {
-	width: 300px;
-	}
-
-	.title-box {
-		width: 225px;
-		padding-right: 5px;
-	}
-
-	.logo-box {
-		width: 70px;
-	}
-
-	/*.form-height {
-		height: 260px;
-	}
-*/
 	.js-selector-form select {
-		font-size: 14px;
+		font-size: 16px;
 	}
 
 	.js-selector-form {
@@ -386,15 +409,15 @@ a.phone-button:hover {
 		text-align: center;	
 	}
 
-	.nav-bar .js-selector-form {
-	margin-left: -150px;
-	}
-
 	a.phone-button {
     	width: 300px;
     	font-size: 28px;
     	margin: 0 auto;
     	display: block;
+	}
+
+	.phone-button p {
+		width: 218px;
 	}
 
 	p.social-links {
@@ -421,7 +444,7 @@ a.phone-button:hover {
 }
 
 /* for tiny phones */
-@media all and (max-device-width: 325px) {
+@media all and (max-device-width: 356px) {
 	.select-label {
     	font-size: 14px;
 	}
@@ -432,10 +455,6 @@ a.phone-button:hover {
 
 	.js-selector-form {
 		width: 200px;
-	}
-
-	.nav-bar .js-selector-form {
-		margin-left: -100px;
 	}
 
 	p.social-links {
