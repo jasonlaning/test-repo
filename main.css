@@ -16,7 +16,6 @@ main {
 h1, h2, h3, h4 {
 	font-weight: 700;
 	text-transform: uppercase;
-	font-family: 'Josefin Sans', sans-serif;
 }
 
 h1 {
@@ -29,10 +28,6 @@ h2 {
 
 .no-display {
 	display: none;
-}
-
-.center {
-	text-align: center;
 }
 
 .white {
@@ -122,58 +117,6 @@ header img {
 	margin: 10px 0;
 }
 
-.js-nav-bar h1.site-title {
-	line-height: 100%;
-	margin: 0 0 0 25px;
-	padding: 0;
-	font-size: 21px;
-	width: 135px;
-	display: inline-block;
-}
-
-.js-nav-bar header img {
- 	height: 40px;
- 	width: auto;
- 	padding-left: 5px;
- 	padding-right: 5px;
-}
-
-.js-nav-bar header {
- 	width: auto;
- 	display: inline-block;
-	height: 40px;
- 	margin: 0;
- 	padding: 0;
- 	vertical-align: middle;
-}
-
-.js-nav-bar {
-	padding: 10px;
-}
-
-.js-nav-bar .js-selector-form {
-	float: right;
-	display: inline-block;
-	height: 40px;
-	margin: 0;
-	padding: 0;
-	width: auto;
-	height: auto;
-}
-
-.js-nav-bar select {
-	height: 30px;
-	margin: 5px 25px 5px 25px;
-}
-
-.js-nav-bar label {
-	font-size: 16px;
-}
-
-.js-nav-bar-padding {
-	padding-top: 60px;
-}
-
 .results-wrap {
 	background-color: #f0f0f0;
 }
@@ -183,13 +126,6 @@ header img {
 	padding-top: 100px;
 	padding-bottom: 800px;
 	margin: 0;
-}
-
-#js-search-results {
-	max-width: 1000px;
-	margin: 0 auto;
-	text-align: left;
-	padding: 0 10px;
 }
 
 .senator {
@@ -299,6 +235,68 @@ footer {
 	display: none;
 }
 
+
+/************.js-nav-bar settings changes elements after first search********/
+
+.js-nav-bar h1.site-title {
+	line-height: 100%;
+	margin: 0 0 0 25px;
+	padding: 0;
+	font-size: 21px;
+	width: 135px;
+	display: inline-block;
+}
+
+.js-nav-bar header img {
+ 	height: 40px;
+ 	width: auto;
+ 	padding-left: 5px;
+ 	padding-right: 5px;
+}
+
+.js-nav-bar header {
+ 	width: auto;
+ 	display: inline-block;
+	height: 40px;
+ 	margin: 0;
+ 	padding: 0;
+ 	vertical-align: middle;
+}
+
+.js-nav-bar {
+	padding: 10px;
+}
+
+.js-nav-bar .js-selector-form {
+	float: right;
+	display: inline-block;
+	height: 40px;
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: auto;
+}
+
+.js-nav-bar select {
+	height: 30px;
+	margin: 5px 25px 5px 25px;
+}
+
+.js-nav-bar label {
+	font-size: 16px;
+}
+
+.js-nav-bar-padding {
+	padding-top: 60px;
+}
+
+#js-search-results {
+	max-width: 1000px;
+	margin: 0 auto;
+	text-align: left;
+	padding: 0 10px;
+}
+
 footer.js-nav-bar {
 	display: block;
 }
@@ -325,6 +323,7 @@ footer.js-nav-bar a {
 footer.js-nav-bar a:hover {
     text-decoration: underline;
 }
+
 
 /*************************** responsive styles ****************************/
 
