@@ -1,19 +1,20 @@
-var apiKey = 'f3eJCOiKbJ2ZMrlU898kj7q8g11J4hEW5IbJY9Zl';
-
+// global variable to manage app state
 var state = {
 	queryTerm: '',
 	senatorBios: [],
 	senatorVotes: [],
 	senatorHTML: [],
-	statePicked: ''
+	statePicked: '',
+	navBar: false
 }
 
-function getMembers() {
+var apiKey = 'f3eJCOiKbJ2ZMrlU898kj7q8g11J4hEW5IbJY9Zl';
 
+// get senator IDs from API
+function getMembers() {
 	state.senatorBios = [];
 	state.senatorVotes = [];
 	state.senatorHTML = [];
-
 	var settings = {
 		'async': true,
 		'crossDomain': true,
@@ -34,16 +35,15 @@ function getMembers() {
 	});
 }
 
+// use senator IDs to get biographical data
 function getMemberData(members, settings) {
-	
-	var settings1 = {
+	var settingsBios = {
 		url: '',
 		headers: {
 			'x-api-key': apiKey,
   		}
 	};
-
-	var settings2 = {
+	var settingsVotes = {
 		url: '',
 		headers: {
 			'x-api-key': apiKey,
@@ -51,15 +51,12 @@ function getMemberData(members, settings) {
 	};
 	
 	for (var i = 0; i < members.length; i++) {
-		settings1.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '.json';
-		settings2.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '/votes.json';
-		console.log(settings1);
-		console.log(settings2);
+		settingsBios.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '.json';
+		settingsVotes.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '/votes.json';
 
-		$.when($.ajax(settings1), $.ajax(settings2)).done(function (response1, response2) {
-				state.senatorBios.push (response1[0].results);
-				state.senatorVotes.push (response2[0].results);
-			
+		$.when($.ajax(settingsBios), $.ajax(settingsVotes)).done(function (responseBios, responseVotes) {
+				state.senatorBios.push (responseBios[0].results);
+				state.senatorVotes.push (responseVotes[0].results);			
 				if (state.senatorBios.length === members.length) {
 					getSenatorHTML(state.senatorBios, state.senatorVotes)
 					displaySenatorHTML(state.senatorHTML);	
@@ -68,10 +65,9 @@ function getMemberData(members, settings) {
 	}
 }
 
+// use senator IDs to get voting data 
 function getVotesHTML(votes) {
 	voteHTML = '';
-
-	console.log(votes);
 
 	for (var i = 0; i < 5; i++) {
 		vote = votes[i];
@@ -90,10 +86,10 @@ function getVotesHTML(votes) {
 	return voteHTML;
 }
 
+// sort through bio data to get committee membership data
 function getCommittees(bio) {
 	var committees = '';
 	var committeeList = bio.roles[0].committees;
-	console.log('committees', committeeList);
 
 	if ((bio.member_id === 'S001202') && committeeList.length == 0) {
 		committees = 'Budget Committee, Armed Services Committee, Energy and ' +
@@ -113,6 +109,7 @@ function getCommittees(bio) {
 	return committees;
 }
 
+// sort through biographical data to get social media links
 function getSocialLinks(bio) {
 	var socialLinks = '';
 
@@ -137,11 +134,9 @@ function getSocialLinks(bio) {
 	return socialLinks;   
 }
 
+// use bio and voting data to create html for results page
 function getSenatorHTML(bios, votes) {
-
 	for (var i = 0; i < 2; i++) {
-		console.log('bios', bios);
-		console.log('bios[' + i + ']', bios[i]);
 		var bio = bios[i][0];
 		var vote = votes[i][0];     
     	var imgUrl = 'https://theunitedstates.io/images/congress/450x550/' + bio.member_id + '.jpg'; // 225x275 or 450x550
@@ -174,13 +169,12 @@ function getSenatorHTML(bios, votes) {
 							'</section>' +
 							'</div>' +
 							'</div>');
-							//console.log(state.senatorHTML);
 	}
 }
 
+// render search results
 function displaySenatorHTML(senatorHTML) {
 	var resultElement = '';
-	console.log('displaying already');
 
 	if (senatorHTML) {
 		resultElement = '<div class="to-fade">' + senatorHTML + '</div>';
@@ -189,26 +183,26 @@ function displaySenatorHTML(senatorHTML) {
 		resultElement = '<p class="DC-message">Sorry, but residents of Washington DC have no representation ' +
 						'in the United States Senate.</p>';
 	}
-
-	if (!$('.js-searching-alert').hasClass('no-display')) {
+	if (!state.navBar) {
 		$('.js-searching-alert').toggleClass('no-display');
 	};
 	$('#js-search-results').html(resultElement);	
 	$('.to-fade').addClass('fade-in');	
-	if (!$('.form-box').hasClass('js-nav-bar')) {
+	if (!state.navBar) {
+		state.navBar = true;
 		$('.form-box').addClass('js-nav-bar');
 		$('.results-wrap').addClass('js-nav-bar-padding');
-		console.log('nav bar');
+		$('footer').addClass('js-nav-bar');
 	};
 	$('html, body').animate({scrollTop:$('.results-wrap').position().top});
-
 }
 
+// event handler
 function watchSubmit() {
 	$('.js-selector-form').change(function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		if (!$('.form-box').hasClass('js-nav-bar')) {
+		if (!state.navBar) {
 		$('.js-searching-alert').toggleClass('no-display');
 		};
 		state.queryTerm = $(this).find('option:selected').val();

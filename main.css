@@ -1,15 +1,12 @@
 * {
 	box-sizing: border-box;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 body {
 	padding: 0;
 	margin: 0;
 	font-size: 20px;
-}
-
-body * {
-	font-family: 'Josefin Sans', sans-serif;
 }
 
 main {
@@ -298,9 +295,46 @@ a.phone-button:hover {
 	animation-fill-mode: forwards;
 }
 
-@media all and (max-width: 1000px) {
+footer {
+	display: none;
+}
+
+footer.js-nav-bar {
+	display: block;
+}
+
+footer.js-nav-bar {
+    background-color: #f0f0f0;
+    padding: 150px 25px 25px 25px;
+}
+
+footer.js-nav-bar p {
+    border-top: 1px solid #bbb;
+    font-size: 15px;
+    padding-top: 25px;
+    margin: 0;
+    color: #777;
+    text-align: center;
+}
+
+footer.js-nav-bar a {
+	text-decoration: none;
+    color: MidnightBlue;
+}
+
+footer.js-nav-bar a:hover {
+    text-decoration: underline;
+}
+
+/*************************** responsive styles ****************************/
+
+@media all and (max-width: 1050px) {
 	.js-nav-bar select {
 		margin-left: 10px;
+	}
+
+	footer.js-nav-bar p {
+    	text-align: left;
 	}
 }
 
@@ -443,7 +477,6 @@ a.phone-button:hover {
 
 }
 
-/* for tiny phones */
 @media all and (max-device-width: 356px) {
 	.select-label {
     	font-size: 14px;
