@@ -323,6 +323,11 @@ a.phone-button:hover {
 
 @media all and (max-device-width: 550px) {
 
+	select:focus, textarea:focus, input:focus {
+    font-size: 16px;
+    background: #eee;
+  	}
+
 	body {
 		font-size: 18px;
 	}
