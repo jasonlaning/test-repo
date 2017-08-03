@@ -16,12 +16,10 @@ function getMembers() {
 	state.senatorVotes = [];
 	state.senatorHTML = [];
 	var settings = {
-		'async': true,
-		'crossDomain': true,
 		'url': 'https://api.propublica.org/congress/v1/members/senate/' + state.queryTerm + '/current.json',
 		'method': 'GET',
 		'headers': {
-			'x-api-key': apiKey,
+			'X-API-Key': apiKey,
   		}
 	}
 
@@ -40,13 +38,13 @@ function getMemberData(members, settings) {
 	var settingsBios = {
 		url: '',
 		headers: {
-			'x-api-key': apiKey,
+			'X-API-Key': apiKey,
   		}
 	};
 	var settingsVotes = {
 		url: '',
 		headers: {
-			'x-api-key': apiKey,
+			'X-API-Key': apiKey,
   		}
 	};
 	
