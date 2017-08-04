@@ -16,14 +16,18 @@ function getMembers() {
 	state.senatorVotes = [];
 	state.senatorHTML = [];
 	var settings = {
-		'url': 'https://api.propublica.org/congress/v1/members/senate/' + state.queryTerm + '/current.json',
-		'method': 'GET',
-		'headers': {
+		url: 'https://artseen-nyc-api.herokuapp.com/api/members',
+		method: 'POST',
+		data: {
+			url: 'https://api.propublica.org/congress/v1/members/senate/' + state.queryTerm + '/current.json',
+		},
+		headers: {
 			'X-API-Key': apiKey,
   		}
 	}
 
 	$.ajax(settings).done(function (response) {
+		console.log(response);
 		if (response.results.length > 0) {
 			getMemberData(response.results, settings);
 		}
@@ -36,25 +40,29 @@ function getMembers() {
 // use senator IDs to get biographical data
 function getMemberData(members, settings) {
 	var settingsBios = {
-		url: '',
+		url: 'https://artseen-nyc-api.herokuapp.com/api/members',
+		method: 'POST',
+		data: {},
 		headers: {
 			'X-API-Key': apiKey,
   		}
 	};
 	var settingsVotes = {
-		url: '',
+		url: 'https://artseen-nyc-api.herokuapp.com/api/members',
+		method: 'POST',
+		data: {},
 		headers: {
 			'X-API-Key': apiKey,
   		}
 	};
 	
 	for (var i = 0; i < members.length; i++) {
-		settingsBios.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '.json';
-		settingsVotes.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '/votes.json';
+		settingsBios.data.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '.json';
+		settingsVotes.data.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '/votes.json';
 
 		$.when($.ajax(settingsBios), $.ajax(settingsVotes)).done(function (responseBios, responseVotes) {
-				state.senatorBios.push (responseBios[0].results);
-				state.senatorVotes.push (responseVotes[0].results);			
+				state.senatorBios.push(responseBios[0].results);
+				state.senatorVotes.push(responseVotes[0].results);			
 				if (state.senatorBios.length === members.length) {
 					getSenatorHTML(state.senatorBios, state.senatorVotes)
 					displaySenatorHTML(state.senatorHTML);	
