@@ -66,11 +66,8 @@ function getMemberData(members, settings) {
 			members[i].id + '/votes.json'});
 
 		$.when($.ajax(settingsBios), $.ajax(settingsVotes)).done(function (responseBios, responseVotes) {
-				console.log(responseBios);
-				console.log(responseBios.result);
-				console.log(responseBios.result.results);
-				state.senatorBios.push(responseBios.result.results);
-				state.senatorVotes.push(responseVotes.result.results);			
+				state.senatorBios.push(responseBios[0].result.results);
+				state.senatorVotes.push(responseVotes[0].result.results);			
 				if (state.senatorBios.length === members.length) {
 					getSenatorHTML(state.senatorBios, state.senatorVotes)
 					displaySenatorHTML(state.senatorHTML);	
