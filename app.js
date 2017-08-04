@@ -21,6 +21,7 @@ function getMembers() {
 		data: JSON.stringify({
 			url: 'https://api.propublica.org/congress/v1/members/senate/' + state.queryTerm + '/current.json',
 		}),
+		contentType: "application/json",
 		headers: {
 			'X-API-Key': apiKey,
   		}
@@ -43,6 +44,7 @@ function getMemberData(members, settings) {
 		url: 'https://artseen-nyc-api.herokuapp.com/api/members',
 		method: 'POST',
 		data: {},
+		contentType: "application/json",
 		headers: {
 			'X-API-Key': apiKey,
   		}
@@ -51,6 +53,7 @@ function getMemberData(members, settings) {
 		url: 'https://artseen-nyc-api.herokuapp.com/api/members',
 		method: 'POST',
 		data: {},
+		contentType: "application/json",
 		headers: {
 			'X-API-Key': apiKey,
   		}
