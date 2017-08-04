@@ -18,9 +18,9 @@ function getMembers() {
 	var settings = {
 		url: 'https://artseen-nyc-api.herokuapp.com/api/members',
 		method: 'POST',
-		data: {
+		data: JSON.stringify({
 			url: 'https://api.propublica.org/congress/v1/members/senate/' + state.queryTerm + '/current.json',
-		},
+		}),
 		headers: {
 			'X-API-Key': apiKey,
   		}
@@ -57,8 +57,10 @@ function getMemberData(members, settings) {
 	};
 	
 	for (var i = 0; i < members.length; i++) {
-		settingsBios.data.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '.json';
-		settingsVotes.data.url = 'https://api.propublica.org/congress/v1/members/' + members[i].id + '/votes.json';
+		settingsBios.data = JSON.stringify({url: 'https://api.propublica.org/congress/v1/members/' + 
+			members[i].id + '.json'});
+		settingsVotes.data = JSON.stringify({url: 'https://api.propublica.org/congress/v1/members/' + 
+			members[i].id + '/votes.json'});
 
 		$.when($.ajax(settingsBios), $.ajax(settingsVotes)).done(function (responseBios, responseVotes) {
 				state.senatorBios.push(responseBios[0].results);
