@@ -29,7 +29,7 @@ function getMembers() {
 
 	$.ajax(settings).done(function (response) {
 		console.log(response);
-		if (response.results.length > 0) {
+		if (response.result.results.length > 0) {
 			getMemberData(response.results, settings);
 		}
 		else {
