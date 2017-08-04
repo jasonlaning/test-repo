@@ -30,7 +30,7 @@ function getMembers() {
 	$.ajax(settings).done(function (response) {
 		console.log(response);
 		if (response.result.results.length > 0) {
-			getMemberData(response.results, settings);
+			getMemberData(response.result.results, settings);
 		}
 		else {
 			displaySenatorHTML('');
